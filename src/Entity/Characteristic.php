@@ -3,12 +3,14 @@
 namespace Spruthub\Entity;
 use Spruthub\Entity\Common\AbstractEntity;
 use Spruthub\Entity\Common\CharacteristicInterface;
+use Spruthub\Sdk;
 
 
 /**
  * Class Characteristic
  *
  * @property int $id
+ * @property int $a_id
  * @property string $cl
  * @property array $name
  * @property string $type
@@ -18,6 +20,10 @@ use Spruthub\Entity\Common\CharacteristicInterface;
  * @property string $format
  * @property bool $writable
  * @property bool $readable
+ * @property int|float|null $minValue
+ * @property int|float|null $maxValue
+ * @property int|float|null $minStep
+ * @property array|null validValues
  * @property string $description
  * @property string $value
  *
@@ -27,6 +33,7 @@ class Characteristic extends AbstractEntity implements CharacteristicInterface {
     protected static function defineProperties() {
         return [
             'id' => [],
+            'a_id' => [],
             'cl' => [],
             'name' => [],
             'type' => [],
@@ -36,6 +43,10 @@ class Characteristic extends AbstractEntity implements CharacteristicInterface {
             'format' => [],
             'writable' => [],
             'readable' => [],
+            'minValue' => [],
+            'maxValue' => [],
+            'minStep' => [],
+            'validValues' => [],
             'description' => [],
             'value' => [],
         ];
@@ -59,5 +70,15 @@ class Characteristic extends AbstractEntity implements CharacteristicInterface {
     public function requestInstance(int $id, int $accessoryid)
     {
         return parent::defaultRequestInstance("/accessories/{$accessoryid}/characteristics/{$id}");
+    }
+
+    public function newValue    ($value) {
+
+        $accessoryid = $this->a_id;
+        $characteristicid = $this->id;
+        $apiurlpath = "/accessories/{$accessoryid}/characteristics/{$characteristicid}/value";
+        $url = $this->apiurl . $apiurlpath;
+        $headers = [Sdk::instance()->getAuthorizationHeader()];
+        Sdk::instance()->requestJson($url, $headers, 'put', $value);
     }
 }
