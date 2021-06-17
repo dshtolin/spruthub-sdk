@@ -11,6 +11,7 @@ use Spruthub\Sdk;
  *
  * @property int $id
  * @property int $a_id
+ * @property int $s_id
  * @property string $cl
  * @property array $name
  * @property string $type
@@ -34,6 +35,7 @@ class Characteristic extends AbstractEntity implements CharacteristicInterface {
         return [
             'id' => [],
             'a_id' => [],
+            's_id' => [],
             'cl' => [],
             'name' => [],
             'type' => [],

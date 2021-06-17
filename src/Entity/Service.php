@@ -17,7 +17,7 @@ use Spruthub\Entity\Common\ServiceInterface;
  * @property string $googleType
  * @property string $yandexType
  * @property string $mailRuType
- * @property bool $hidden
+ * @property bool $visible
  * @property Characteristic[] $characteristics
  */
 class Service extends AbstractEntity implements ServiceInterface {
@@ -34,7 +34,7 @@ class Service extends AbstractEntity implements ServiceInterface {
             'googleType' => [],
             'yandexType' => [],
             'mailRuType' => [],
-            'hidden' => [],
+            'visible' => [],
             'characteristics' => [],
         ];
     }

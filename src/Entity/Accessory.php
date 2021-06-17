@@ -17,7 +17,7 @@ use Spruthub\Entity\Common\EntityInterface;
  * @property string $roomName
  * @property int $deviceId
  * @property bool $hasOptions
- * @property bool $hidden
+ * @property bool $visible
  * @property Service[] $services
  */
 class Accessory extends AbstractEntity implements EntityInterface {
@@ -32,7 +32,7 @@ class Accessory extends AbstractEntity implements EntityInterface {
             'roomName' => [],
             'deviceId' => [],
             'hasOptions' => [],
-            'hidden' => [],
+            'visible' => [],
             'services' => [],
         ];
     }
